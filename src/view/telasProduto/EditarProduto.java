@@ -360,11 +360,7 @@ public class EditarProduto extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void limparCampos() {
-        txtNome.setText("");
-        txtMarca.setText("");
-        txtDescricao.setText("");
-        txtPreco.setText("");
-        txtEstoque.setText("");
+        Utils.limparCampos(txtNome, txtMarca, txtDescricao, txtPreco, txtEstoque);
     }
 
     private void exibeInformacoesDoBd(Produto produto) {

@@ -335,9 +335,6 @@ public class CadastroVenda extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void limparCampos() {
-        txtStatus.setText("");
-        txtClienteId.setText("");
-        txtDataVenda.setText("");
-        txtValorTotal.setText("");
+        Utils.limparCampos(txtStatus, txtClienteId, txtDataVenda, txtValorTotal);
     }
 }

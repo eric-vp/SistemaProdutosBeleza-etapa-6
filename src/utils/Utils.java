@@ -6,6 +6,8 @@ package utils;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -35,5 +37,11 @@ public class Utils {
             JOptionPane.showMessageDialog(null, "É necessário selecionar " + nomeItem + ".");
         }        
         return linha;
+    }
+    
+    public static void limparCampos(JTextComponent... campos) {
+        for (JTextComponent campo : campos) {
+            campo.setText("");
+        }
     }
 }

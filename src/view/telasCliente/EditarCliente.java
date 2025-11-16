@@ -394,12 +394,7 @@ public class EditarCliente extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void limparCampos() {
-        txtNome.setText("");
-        txtDataNascimento.setText("");
-        txtEmail.setText("");
-        txtCpf.setText("");
-        txtEndereco.setText("");
-        txtTelefone.setText("");
+        Utils.limparCampos(txtNome, txtDataNascimento, txtEmail, txtCpf, txtEndereco, txtTelefone);
     }
 
     private void exibeInformacoesDoBd(Cliente cliente) {

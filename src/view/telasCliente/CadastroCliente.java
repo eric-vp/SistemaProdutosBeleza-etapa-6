@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import utils.Utils;
+import controller.ClienteController;
 
 /**
  *
@@ -291,31 +292,14 @@ public class CadastroCliente extends javax.swing.JFrame {
         String endereco = txtEndereco.getText();
         String telefone = txtTelefone.getText();   
         
-        if (nome.isBlank() || dataNascimentoStr.isBlank() || email.isBlank() || cpf.isBlank() || endereco.isBlank() || telefone.isBlank()) {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
-            return;
+        ClienteController controller = new ClienteController();
+        
+        boolean sucesso = controller.cadastrarCliente(nome, dataNascimentoStr, email, cpf, endereco, telefone);
+        
+        if (sucesso) {
+            limparCampos();
         }
         
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            sdf.setLenient(false);
-            Date dataNascimento = sdf.parse(dataNascimentoStr);
-            
-            Cliente cliente = new Cliente();
-            cliente.setNome(nome);
-            cliente.setDataNascimento(dataNascimento);
-            cliente.setEmail(email);
-            cliente.setCpf(cpf);
-            cliente.setEndereco(endereco);
-            cliente.setTelefone(telefone);
-
-            ClienteDAO clienteDAO = new ClienteDAO();
-            clienteDAO.cadastrar(cliente);
-
-            limparCampos();
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(null, "Data de nascimento inválida. Use o formato dd/MM/yyyy.");
-        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void txtDataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataNascimentoActionPerformed
@@ -384,11 +368,6 @@ public class CadastroCliente extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void limparCampos() {
-        txtNome.setText("");
-        txtDataNascimento.setText("");
-        txtEmail.setText("");
-        txtCpf.setText("");
-        txtEndereco.setText("");
-        txtTelefone.setText("");
+        Utils.limparCampos(txtNome, txtDataNascimento, txtEmail, txtCpf, txtEndereco, txtTelefone);
     }
 }

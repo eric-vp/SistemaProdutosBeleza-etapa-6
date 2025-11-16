@@ -300,8 +300,6 @@ public class EditarFornecedor extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void exibeInformacoesDoBd(Fornecedor fornecedor) {
-        txtNome.setText(fornecedor.getNome());
-        txtCnpj.setText(fornecedor.getCnpj());
-        txtTelefone.setText(fornecedor.getTelefone());
+        Utils.limparCampos(txtNome, txtCnpj, txtTelefone);
     }
 }

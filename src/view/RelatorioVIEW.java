@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import relatorio.Relatorio;
 import relatorio.RelatorioDAO;
+import controller.RelatorioController;
 
 /**
  *
@@ -176,23 +177,13 @@ public class RelatorioVIEW extends javax.swing.JFrame {
         String inicioStr = dataInicio.getText();
         String fimStr = dataFim.getText();
         
-        if (inicioStr.isBlank() || fimStr.isBlank()) {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
-            return;
+        RelatorioController controller = new RelatorioController();
+        Relatorio relatorio = controller.pesquisarRelatorio(inicioStr, fimStr);
+        
+        if (relatorio != null) {
+            preencherTabela(relatorio);
         }
         
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate inicio = LocalDate.parse(inicioStr, formatter);
-            LocalDate fim = LocalDate.parse(fimStr, formatter);
-            
-            RelatorioDAO relatorioDAO = new RelatorioDAO();
-            Relatorio relatorio = relatorioDAO.gerarRelatorio(inicio, fim);
-            
-            preencherTabela(relatorio);
-        } catch (DateTimeParseException e) {
-            JOptionPane.showMessageDialog(null, "Data inválida. Use o formato dd/MM/yyyy.");
-        }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     /**

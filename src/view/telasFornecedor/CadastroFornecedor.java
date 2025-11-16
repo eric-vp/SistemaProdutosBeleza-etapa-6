@@ -287,8 +287,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void limparCampos() {
-        txtNome.setText("");
-        txtCnpj.setText("");
-        txtTelefone.setText("");
+        Utils.limparCampos(txtNome, txtCnpj, txtTelefone);
     }
 }
