@@ -10,7 +10,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class ProdutoDAO {
-    public void cadastrar(Produto produto) {
+    public boolean cadastrar(Produto produto) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar();
         
@@ -26,9 +26,11 @@ public class ProdutoDAO {
             ps.executeUpdate();
             
             JOptionPane.showMessageDialog(null, "Produto inserido com sucesso!");
+            return true;
         } catch (SQLException sqle) {
             JOptionPane.showMessageDialog(null, "Erro no acesso ao Banco de Dados : "+ sqle.getMessage());
         }
+        return false;
     }
     
     public void editar(Produto produto) {

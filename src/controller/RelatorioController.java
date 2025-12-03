@@ -16,6 +16,17 @@ import relatorio.RelatorioDAO;
  * @author ericv
  */
 public class RelatorioController {
+    
+    private RelatorioDAO relatorioDAO;
+    
+    public RelatorioController() {
+        this.relatorioDAO = new RelatorioDAO();
+    }
+    
+    public RelatorioController(RelatorioDAO relatorioDAO) {
+        this.relatorioDAO = relatorioDAO;
+    }
+    
     public Relatorio pesquisarRelatorio(String inicioStr, String fimStr) {
         if (inicioStr.isBlank() || fimStr.isBlank()) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
@@ -27,7 +38,7 @@ public class RelatorioController {
             LocalDate inicio = LocalDate.parse(inicioStr, formatter);
             LocalDate fim = LocalDate.parse(fimStr, formatter);
             
-            RelatorioDAO relatorioDAO = new RelatorioDAO();
+//            RelatorioDAO relatorioDAO = new RelatorioDAO();
             return relatorioDAO.gerarRelatorio(inicio, fim);
             
         } catch (DateTimeParseException e) {

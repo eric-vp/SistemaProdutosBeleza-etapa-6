@@ -11,7 +11,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class ClienteDAO {
-    public void cadastrar(Cliente cliente) {
+    public boolean cadastrar(Cliente cliente) {
         Conexao conexao = new Conexao();
         Connection conn = conexao.conectar();
         
@@ -28,9 +28,11 @@ public class ClienteDAO {
             ps.executeUpdate();
             
             JOptionPane.showMessageDialog(null, "Cliente inserido com sucesso!");
+            return true;
         } catch (SQLException sqle) {
             JOptionPane.showMessageDialog(null, "Erro no acesso ao Banco de Dados : "+ sqle.getMessage());
         }
+        return false;
     }
     
     public void editar(Cliente cliente) {
